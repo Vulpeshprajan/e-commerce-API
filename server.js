@@ -14,6 +14,11 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
+
+// api lists
+import adminRouter from "./src/router/adminRouter.js";
+app.use("/api/v1/admin", adminRouter)
+
 app.get("/", (req, res) => {
   res.json({
     status: "success",
