@@ -1,4 +1,5 @@
 import express from "express";
+import { hashPassword } from "../helper/bcrypt.js";
 
 const router = express.Router()
 
@@ -6,6 +7,13 @@ const router = express.Router()
 router.post("/", (req, res, next) => {
     try {
         console.log(req.body)
+
+        // 1. ENCRYPT PASSWORD
+        const {password} = req.body
+        req.body.password = hashPassword(password)
+
+
+        // 2. iNSERT INTO DATABASE
 
         res.json({
             status: "success", 
